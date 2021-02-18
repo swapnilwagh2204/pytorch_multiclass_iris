@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        body{
+            background-image: url(../static/images/keybord.jpg);
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Enter the details to classify the flower</h1>
+<div id="reg" style="margin-top: 100px; text-align: center;">
+    <form action="/" method="post">
+        sepal_length=<input type="text" name="sl"><br><br>
+        sepal_width=<input type="text" name="sw"> <br><br>
+        petal_length=<input type="text" name="pl"> <br> <br> 
+        petal_width=<input type="text" name="pw"> <br> <br> 
+
+        <button type="submit" class="btn btn-info">submit</button>
+    </form>
+
+    <h2 style="font-weight: bold;">This flower belongs to {{predicted}} </h2>
+    <!-- <h3>accuracy of model is {{result}}</h3> -->
+</div>
+    
+    
+</body>
+</html>
