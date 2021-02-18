@@ -1,0 +1,6 @@
+numpy
+torchvision
+keras
+sklearn
+flask
+tensorflow

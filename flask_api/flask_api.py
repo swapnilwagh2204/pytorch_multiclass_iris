@@ -6,6 +6,7 @@ from pandas import read_csv
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 from torch import Tensor
+from torch.serialization import load
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 from torch.utils.data import random_split
@@ -13,10 +14,12 @@ from torch.nn import Linear
 from torch.nn import ReLU
 from torch.nn import Softmax
 from torch.nn import Module
-from torch.optim import SGD
+from torch.optim import SGD, optimizer
 from torch.nn import CrossEntropyLoss
 from torch.nn.init import kaiming_uniform_
 from torch.nn.init import xavier_uniform_
+import torch
+
 
 app = Flask(__name__)
 
@@ -165,6 +168,10 @@ def index():
     # print(len(train_dl.dataset), len(test_dl.dataset))
     # define the network
     model = MLP(4)
+    #saving the model
+    # checkpoint = {'state_dict': model.state_dict()}
+    # torch.save(checkpoint, 'Checkpoint.pth')
+    
     # train the model
     train_model(train_dl, model)
     # evaluate the model
@@ -177,5 +184,43 @@ def index():
     return render_template('index.html',result='Accuracy: %.3f' % acc,predicted=ls[int(argmax(yhat))])
 
     # return render_template('index.html',result='Accuracy: %.3f' % acc,predicted='Predicted: %s (class=%d)' % (yhat, argmax(yhat)))
+
+@app.route('/json_data',methods=['GET','POST'])
+def jyt():
+    # content=request.get_json(silent=True)
+    # dt=content
+    # print(dt)
+    row=[]
+    dt={'sepalLength': 5.1, 'sepalWidth': 3.5, 'petalLength': 1.4, 'petalWidth': 0.2}
+    for v in dt.values():
+        row.append(v)
+
+    print(row)
+    model=torch.load('iris-pytorch.pkl')
+    # print(type(model))
+
+    # predict function
+    def predict(row, model):
+        # convert row to data
+        row = Tensor([row])
+        # make prediction
+        yhat = model(row)
+        # retrieve numpy array
+        yhat = yhat.detach().numpy()
+        return yhat
+
+    yhat = predict(row, model)
+    # print('Predicted: %s (class=%d)' % (yhat, argmax(yhat)))
+    # return render_template('index.html',predicted=ls[int(argmax(yhat))])
+
+    # yhat = predict(row, model)
+    return {"row":row}
+
+
+
+
 if __name__ == '__main__':
   app.run(host='127.0.0.1', port=8000, debug=True)
+
+
+
