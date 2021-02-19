@@ -25,45 +25,43 @@ class Model(nn.Module):
             x = F.relu(self.layer2(x))
             x = F.softmax(self.layer3(x)) # To check with the loss function
             return x
+'''
+features, labels = load_iris(return_X_y=True)
+features_train,features_test, labels_train, labels_test = train_test_split(features, labels, random_state=42, shuffle=True)
 
-# features, labels = load_iris(return_X_y=True)
-# features_train,features_test, labels_train, labels_test = train_test_split(features, labels, random_state=42, shuffle=True)
-
-# Training
-# model = Model(features_train.shape[1])
-# optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
-# loss_fn = nn.CrossEntropyLoss()
-# epochs = 100
-# x_train, y_train = Variable(torch.from_numpy(features_train)).float(), Variable(torch.from_numpy(labels_train)).long()
-# for epoch in range(1, epochs+1):
-#     # print ("Epoch #",epoch)
-#     y_pred = model(x_train)
-#     loss = loss_fn(y_pred, y_train)
-#     # print_(loss.item())
+Training
+model = Model(features_train.shape[1])
+optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+loss_fn = nn.CrossEntropyLoss()
+epochs = 100
+x_train, y_train = Variable(torch.from_numpy(features_train)).float(), Variable(torch.from_numpy(labels_train)).long()
+for epoch in range(1, epochs+1):
+    # print ("Epoch #",epoch)
+    y_pred = model(x_train)
+    loss = loss_fn(y_pred, y_train)
+    # print_(loss.item())
     
-#     # Zero gradients
-#     optimizer.zero_grad()
-#     loss.backward() # Gradients
-#     optimizer.step() # Update
+    # Zero gradients
+    optimizer.zero_grad()
+    loss.backward() # Gradients
+    optimizer.step() # Update
 
-# predictions
-# x_test = Variable(torch.from_numpy(features_test)).float()
-# pred = model(x_test)
-# pred = pred.detach().numpy()
+predictions
+x_test = Variable(torch.from_numpy(features_test)).float()
+pred = model(x_test)
+pred = pred.detach().numpy()
     
-#saving the model 
-# torch.save(model, "swap.pkl")
-
+saving the model 
+torch.save(model, "swap.pkl")
+'''
 @app.route('/',methods=['GET', 'POST'])
 def index():
     if request.get_json() is not None:
         content=request.get_json(silent=True)
-        dt=content
-        # print(dt)
-        sepal_length =dt['sepalLength']
-        sepal_width =dt['sepalWidth']
-        petal_length =dt['petalLength']
-        petal_width =dt['petalWidth']
+        sepal_length =content['sepal_length']
+        sepal_width =content['sepal_width']
+        petal_length =content['petal_length']
+        petal_width =content['petal_width']
 
     elif request.method=='POST':    
         sepal_length=float(request.form['sl'])
