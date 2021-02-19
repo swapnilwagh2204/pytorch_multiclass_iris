@@ -1,0 +1,145 @@
+[
+    {
+        "label": "pickle",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pickle",
+        "description": "pickle",
+        "detail": "pickle",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "nn",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "Variable",
+        "importPath": "torch.autograd",
+        "description": "torch.autograd",
+        "isExtraImport": true,
+        "detail": "torch.autograd",
+        "documentation": {}
+    },
+    {
+        "label": "load_iris",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "train_test_split",
+        "importPath": "sklearn.model_selection",
+        "description": "sklearn.model_selection",
+        "isExtraImport": true,
+        "detail": "sklearn.model_selection",
+        "documentation": {}
+    },
+    {
+        "label": "accuracy_score",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "to_categorical",
+        "importPath": "keras.utils",
+        "description": "keras.utils",
+        "isExtraImport": true,
+        "detail": "keras.utils",
+        "documentation": {}
+    },
+    {
+        "label": "Tensor",
+        "importPath": "torch.functional",
+        "description": "torch.functional",
+        "isExtraImport": true,
+        "detail": "torch.functional",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn.functional",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn.functional",
+        "description": "torch.nn.functional",
+        "detail": "torch.nn.functional",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Model",
+        "kind": 6,
+        "importPath": "flask_api",
+        "description": "flask_api",
+        "peekOfCode": "class Model(nn.Module):\n        def __init__(self, input_dim):\n            super(Model, self).__init__()\n            self.layer1 = nn.Linear(input_dim,50)\n            self.layer2 = nn.Linear(50, 20)\n            self.layer3 = nn.Linear(20, 3)\n        def forward(self, x):\n            x = F.relu(self.layer1(x))\n            x = F.relu(self.layer2(x))\n            x = F.softmax(self.layer3(x)) # To check with the loss function",
+        "detail": "flask_api",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "flask_api",
+        "description": "flask_api",
+        "peekOfCode": "def index():\n    if request.get_json() is not None:\n        content=request.get_json(silent=True)\n        dt=content\n        # print(dt)\n        sepal_length =dt['sepalLength']\n        sepal_width =dt['sepalWidth']\n        petal_length =dt['petalLength']\n        petal_width =dt['petalWidth']\n    elif request.method=='POST':    ",
+        "detail": "flask_api",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "flask_api",
+        "description": "flask_api",
+        "peekOfCode": "app = Flask(__name__)\nclass Model(nn.Module):\n        def __init__(self, input_dim):\n            super(Model, self).__init__()\n            self.layer1 = nn.Linear(input_dim,50)\n            self.layer2 = nn.Linear(50, 20)\n            self.layer3 = nn.Linear(20, 3)\n        def forward(self, x):\n            x = F.relu(self.layer1(x))\n            x = F.relu(self.layer2(x))",
+        "detail": "flask_api",
+        "documentation": {}
+    }
+]
